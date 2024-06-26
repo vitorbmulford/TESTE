@@ -1,5 +1,11 @@
+// Classe abstrata
 export class Conta {
   constructor(saldoInicial, cliente, agencia) {
+    if (this.constructor == Conta) {
+      throw new Error(
+        "Você não deveria instancar um objeto tipo conta Diretamente, pois ele é uma classe abstrata"
+      );
+    }
     this._saldo = saldoInicial;
     this._cliente = cliente;
     this._agencia = agencia;
@@ -21,25 +27,21 @@ export class Conta {
     return this._saldo;
   }
 
-  // Método para sacar dinheiro
+  // Metodo abstrato
   sacar(valor) {
-    if (this._saldo >= valor) {
-      this._saldo -= valor;
-      return valor;
-    }
-    return 0; // Retorna 0 se não houver saldo suficiente
+    throw new Error("O saque está sem valor de taxa");
   }
-
-  sacar(valor) {
-    // algoritimo para sacar
-    let taxa = 1;
+  _sacar(valor, taxa) {
     const valorSacado = taxa * valor;
     if (this._saldo >= valorSacado) {
       this._saldo -= valorSacado;
       return valorSacado;
     }
+    console.log(
+      "Não foi possivel realizar o saque pois esse valor esta indisponivel na conta "
+    );
+    return 0;
   }
-
   depositar(valor) {
     this._saldo += valor;
   }
@@ -55,7 +57,7 @@ export class Conta {
       );
       return;
     }
-    const valorSacado = this.sacar(valor);
+    const valorSacado = this._sacar(valor, taxa);
     conta.depositar(valorSacado);
   }
 }

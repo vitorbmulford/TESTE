@@ -1,19 +1,36 @@
-import {Cliente} from "./Cliente.js";
-import {ContaCorrente} from "./conta_corrente.js";
-import {ContaPoupanca} from "./conta_poupanca.js";
-import {Conta} from "./Conta.js";
+import { Cliente } from "./Cliente.js";
+import { ContaCorrente } from "./conta/conta_corrente.js";
+import { ContaPoupanca } from "./conta/conta_poupanca.js";
+import { ContaSalario } from "./conta/conta_salario.js";
 
 // criação do cliente1 no cliente.js - nome e cpf
 const cliente1 = new Cliente("Vitor Bebiano Mulford", 54463499895);
 
+const contaCorrenteVitor = new ContaCorrente(0, cliente1, 1001); // Conta corrente
+const contaPoupanca = new ContaPoupanca(0, cliente1, 1001); // Conta poupança
+const contaSalario = new ContaSalario(cliente1); // Conta salário
 
-const contaCorrenteVitor = new ContaCorrente(cliente1, 1001)
-contaCorrenteVitor.depositar(500);
-contaCorrenteVitor.sacar(100);
-//contas para o export contacorrente
+// operações para a conta corrente
+contaCorrenteVitor.depositar(1000);
+contaCorrenteVitor.sacar(500);
 
-const contaPoupanca = new ContaPoupanca(0, cliente1, 1001); // Changed variable name
-contaPoupanca.depositar(100);
-contaPoupanca.sacar(50);
-console.log(contaCorrenteVitor)
-console.log(contaPoupanca);
+// operações para a conta poupança
+contaPoupanca.depositar(1000);
+contaPoupanca.sacar(500);
+
+// operações para a conta salário
+contaSalario.depositar(1000);
+contaSalario.sacar(500);
+
+
+// Ver tela Conta corrente
+console.log("Conta Corrente");
+console.table(contaCorrenteVitor);
+
+// Ver tela Conta Poupança
+console.log("Conta Poupança");
+console.table(contaPoupanca);
+
+// Ver tela Conta Poupança
+console.log("Conta Salário");
+console.table(contaSalario);
