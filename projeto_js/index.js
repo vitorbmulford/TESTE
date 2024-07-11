@@ -51,6 +51,6 @@ const clienteAutentificacao = new Cliente("Vitor Bebiano Mulford", 54463499895, 
 // Sistema de autenticacao
 const gerenteEstaLogado = sistemaAutenticacao.login(gerente1, "123");
 const diretorEstaLogado = sistemaAutenticacao.login(diretor1, "123456");
-const clienteEstaLogado = sistemaAutenticacao.login_cliente(clienteAutentificacao, "150306");
+const clienteEstaLogado = sistemaAutenticacao.login(clienteAutentificacao, "150306");
 
 console.log(gerenteEstaLogado, diretorEstaLogado, clienteEstaLogado);

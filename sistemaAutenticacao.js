@@ -1,8 +1,12 @@
-export class sistemaAutenticacao{
-    static login(funcionario, senha){
-        return funcionario.senha == senha
+// Duck type
+export class sistemaAutenticacao {
+  static login(autenticavel, senha) {
+    if (sistemaAutenticacao.ehautenticavel(autenticavel)) {
+      return autenticavel.autenticar(senha);
     }
-    static login_cliente(cliente, senha){
-        return cliente._senha == senha
-    }
+    return false;
+  }
+  static ehautenticavel(autenticavel){
+    return "autenticar" in autenticavel && autenticavel.autenticar instanceof Function
+  }
 }
